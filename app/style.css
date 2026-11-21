@@ -1,0 +1,256 @@
+/* Vice Frame — editor chrome. Dark plum glass, neon accents, and the two
+   vendored faces: Anton for the brand and headings, Pacifico for whispers. */
+
+@font-face {
+  font-family: "Anton";
+  src: url("fonts/Anton-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pacifico";
+  src: url("fonts/Pacifico-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: #f3ecff;
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(255, 94, 122, 0.22), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(55, 224, 216, 0.14), transparent 55%),
+    linear-gradient(160deg, #150826 0%, #1d0b31 55%, #2a0f3d 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------------- top bar */
+
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(10, 4, 22, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.brand { display: flex; align-items: baseline; gap: 12px; }
+
+.brand-mark {
+  width: 18px; height: 18px;
+  align-self: center;
+  background: linear-gradient(135deg, #ffc46b, #ff5e7a 60%, #e63d8f);
+  transform: rotate(45deg);
+  border-radius: 4px;
+  box-shadow: 0 0 14px rgba(255, 94, 122, 0.65);
+}
+
+.brand h1 {
+  font-family: "Anton", sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-family: "Pacifico", cursive;
+  color: #7df3ff;
+  font-size: 16px;
+}
+
+.top-actions { display: flex; align-items: center; gap: 14px; }
+.top-note { color: #b9a8d9; font-size: 13px; }
+
+/* ---------------------------------------------------------------- layout */
+
+#workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 264px 1fr 264px;
+  gap: 14px;
+  padding: 14px;
+  align-items: start;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rail section {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.rail h2 {
+  font-family: "Anton", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffd98c;
+  margin: 0 0 10px;
+}
+
+.rail label {
+  display: block;
+  font-size: 13px;
+  color: #cfc2ea;
+  margin: 10px 0;
+}
+
+.rail input[type="text"],
+.rail textarea,
+.rail select {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(8, 3, 18, 0.65);
+  color: #fff;
+  font: inherit;
+}
+
+.rail textarea { resize: vertical; }
+
+.rail input[type="range"] { width: 100%; accent-color: #ff5e7a; }
+
+label.check { display: flex; align-items: center; gap: 8px; }
+label.check input { width: auto; }
+
+.hint { color: #9d8bc4; font-size: 12px; line-height: 1.45; margin: 8px 0 0; }
+
+button {
+  font: inherit;
+  color: #f3ecff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button:hover { background: rgba(255, 255, 255, 0.13); }
+
+button.primary {
+  background: linear-gradient(135deg, #ff8438, #ff5e7a 55%, #e63d8f);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 18px rgba(255, 94, 122, 0.4);
+}
+button.primary.wide { width: 100%; margin-top: 10px; }
+
+/* ---------------------------------------------------------------- photos */
+
+.upload {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border: 1.5px dashed rgba(255, 217, 140, 0.55);
+  border-radius: 10px;
+  color: #ffd98c !important;
+  cursor: pointer;
+  margin: 0 0 10px !important;
+}
+.upload input { display: none; }
+
+.sample-row { display: flex; gap: 8px; }
+.sample-row button { flex: 1; font-size: 12.5px; padding: 7px 6px; }
+
+#photo-list { list-style: none; margin: 12px 0 0; padding: 0; }
+#photo-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 0;
+  font-size: 13px; color: #e7ddfb;
+}
+#photo-list img {
+  width: 44px; height: 44px; object-fit: cover;
+  border-radius: 7px; border: 1px solid rgba(255, 255, 255, 0.25);
+}
+#photo-list li.empty { color: #9d8bc4; font-size: 12.5px; }
+
+/* ---------------------------------------------------------------- panels */
+
+.panel-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.panel-chip { font-size: 12.5px; padding: 6px 10px; border-radius: 999px; }
+.panel-chip.active {
+  background: rgba(55, 224, 216, 0.18);
+  border-color: #37e0d8;
+  color: #aef7f2;
+}
+.panel-controls { margin-top: 6px; }
+
+/* ---------------------------------------------------------------- choices */
+
+.choices { display: flex; flex-direction: column; gap: 8px; }
+.choice {
+  text-align: left;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 9px 11px;
+}
+.choice small { color: #b9a8d9; font-size: 12px; line-height: 1.35; }
+.choice.active {
+  border-color: #ffb03a;
+  background: rgba(255, 176, 58, 0.12);
+  box-shadow: inset 0 0 0 1px #ffb03a;
+}
+.choice.swatch { flex-direction: row; align-items: center; gap: 10px; }
+.choice.swatch .chip {
+  width: 44px; height: 18px; border-radius: 5px; flex: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.choice.size { flex-direction: row; }
+
+/* ---------------------------------------------------------------- stage */
+
+#stage-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 4px;
+}
+
+#stage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  cursor: grab;
+  touch-action: none;
+}
+#stage:active { cursor: grabbing; }
+
+/* ---------------------------------------------------------------- shot mode */
+
+body.shot-cover { display: block; background: #000; }
+body.shot-cover #topbar,
+body.shot-cover .rail,
+body.shot-cover #stage-wrap .hint { display: none; }
+body.shot-cover #workspace { display: block; padding: 0; }
+body.shot-cover #stage-wrap { padding: 0; display: block; }
+body.shot-cover #stage {
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: default;
+}
+
+@media (max-width: 1080px) {
+  #workspace { grid-template-columns: 1fr; }
+}

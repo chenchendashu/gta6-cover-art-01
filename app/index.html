@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Frame — Leonida Cover Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <h1>Vice Frame</h1>
+    <span class="brand-sub">Leonida Cover Studio</span>
+  </div>
+  <div class="top-actions">
+    <span class="top-note">Your photos never leave this machine.</span>
+    <button id="export-btn" type="button" class="primary">Export PNG</button>
+  </div>
+</header>
+
+<main id="workspace">
+  <aside class="rail" id="rail-left">
+    <section>
+      <h2>1 · Photos</h2>
+      <label class="upload">
+        <input id="photo-input" type="file" accept="image/*" multiple>
+        Add your photos
+      </label>
+      <div class="sample-row">
+        <button id="sample-boulevard" type="button">Sample: Boulevard</button>
+        <button id="sample-pier" type="button">Sample: Pier</button>
+      </div>
+      <ul id="photo-list"></ul>
+    </section>
+    <section>
+      <h2>Panels</h2>
+      <div id="panel-list" class="panel-grid"></div>
+      <div class="panel-controls">
+        <label><span id="panel-name">Panel 1</span> shows
+          <select id="panel-photo"></select>
+        </label>
+        <label>Zoom
+          <input id="panel-zoom" type="range" min="1" max="3" step="0.05" value="1">
+        </label>
+        <p class="hint">Drag the photo inside the canvas to reposition it.</p>
+        <button id="panel-reset" type="button">Reset crop</button>
+      </div>
+    </section>
+  </aside>
+
+  <section id="stage-wrap">
+    <canvas id="stage" width="920" height="518"></canvas>
+    <p class="hint">Live preview — the dashed outline marks the selected panel.</p>
+  </section>
+
+  <aside class="rail" id="rail-right">
+    <section>
+      <h2>2 · Layout</h2>
+      <div id="layout-picker" class="choices"></div>
+    </section>
+    <section>
+      <h2>3 · Colour grade</h2>
+      <div id="grade-picker" class="choices"></div>
+    </section>
+    <section>
+      <h2>4 · Caption</h2>
+      <label>Kicker
+        <input id="cap-kicker" type="text" value="Welcome back to the neon coast" maxlength="60">
+      </label>
+      <label>Title (one line per row)
+        <textarea id="cap-title" rows="2" maxlength="40">NEON
+COAST</textarea>
+      </label>
+      <label>Script subtitle
+        <input id="cap-script" type="text" value="leonida nights" maxlength="40">
+      </label>
+      <label>Heat stars
+        <input id="cap-stars" type="range" min="0" max="5" step="1" value="5">
+      </label>
+      <label class="check">
+        <input id="cap-badge" type="checkbox" checked> Season badge
+      </label>
+    </section>
+    <section>
+      <h2>5 · Export</h2>
+      <div id="size-picker" class="choices"></div>
+      <button id="export-btn-2" type="button" class="primary wide">Export PNG</button>
+      <p class="hint">One click from photo to a post-ready PNG.</p>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
